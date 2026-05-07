@@ -4,97 +4,147 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mensagem Para Você ❤️</title>
+<title>Mensagem para você ❤️</title>
 
 <style>
     body{
-        background: linear-gradient(135deg, #ff8fb1, #ff5e8a);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-family: Arial, sans-serif;
-        color: white;
-        overflow: hidden;
-        text-align: center;
+        margin:0;
+        padding:0;
+        height:100vh;
+        overflow:hidden;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+
+        font-family:Arial, sans-serif;
+        color:white;
+        text-align:center;
+
+        background:linear-gradient(135deg,#ff7aa2,#ff4f81);
     }
 
     h1{
-        font-size: 2rem;
-        margin-bottom: 20px;
+        font-size:2.2rem;
+        margin-bottom:20px;
+        text-shadow:0 0 10px rgba(0,0,0,0.3);
+    }
+
+    img{
+        width:280px;
+        border-radius:25px;
+        margin-bottom:25px;
+
+        box-shadow:
+        0 0 25px rgba(255,255,255,0.3),
+        0 0 50px rgba(0,0,0,0.2);
+
+        animation:flutuar 3s ease-in-out infinite;
     }
 
     #texto{
-        font-size: 1.5rem;
-        background: rgba(255,255,255,0.15);
-        padding: 20px;
-        border-radius: 20px;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        font-size:1.4rem;
+        background:rgba(255,255,255,0.15);
+
+        padding:20px;
+        border-radius:20px;
+
+        width:80%;
+        max-width:700px;
+
+        backdrop-filter:blur(5px);
+
+        box-shadow:0 0 20px rgba(0,0,0,0.2);
     }
 
     .heart{
-        position: absolute;
-        color: white;
-        animation: subir 5s linear infinite;
-        font-size: 20px;
+        position:absolute;
+        color:white;
+        animation:subir 5s linear infinite;
+        pointer-events:none;
     }
 
     @keyframes subir{
         0%{
-            transform: translateY(100vh);
-            opacity: 0;
+            transform:translateY(100vh);
+            opacity:0;
         }
+
         100%{
-            transform: translateY(-10vh);
-            opacity: 1;
+            transform:translateY(-10vh);
+            opacity:1;
+        }
+    }
+
+    @keyframes flutuar{
+        0%{
+            transform:translateY(0px);
+        }
+
+        50%{
+            transform:translateY(-10px);
+        }
+
+        100%{
+            transform:translateY(0px);
         }
     }
 </style>
 </head>
+
 <body>
 
-<h1>❤️ Uma mensagem pra você ❤️</h1>
+<h1>❤️ Mensagem para você ❤️</h1>
+
+<img src="foto.jpg" alt="Nós dois">
 
 <div id="texto">
     Carregando amor infinito...
 </div>
 
 <script>
+
 let contador = 1;
+
 const texto = document.getElementById("texto");
 
-function atualizar(){
+function atualizarMensagem(){
+
     texto.innerHTML =
     `"Quando eu olho para você, eu amo você ${contador} vezes mais ❤️"`;
 
     contador++;
 
-    if(contador > 1000){
+    if(contador > 1000000){
         contador = 1;
     }
 }
 
-setInterval(atualizar, 100);
+setInterval(atualizarMensagem,100);
 
-// corações subindo
 function criarCoracao(){
+
     const heart = document.createElement("div");
+
     heart.classList.add("heart");
+
     heart.innerHTML = "❤️";
 
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+    heart.style.fontSize =
+    (Math.random() * 20 + 15) + "px";
 
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 5000);
+    },5000);
 }
 
-setInterval(criarCoracao, 300);
+setInterval(criarCoracao,250);
+
 </script>
 
 </body>
